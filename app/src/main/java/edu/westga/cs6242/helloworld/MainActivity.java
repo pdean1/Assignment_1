@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int iBtnClicks;
+    private TextView tvOutput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        // variable instantiations
+        this.iBtnClicks = 0;
+        this.tvOutput = (TextView) findViewById(R.id.tvOut);
+        this.tvOutput.setText(String.format("%d", this.iBtnClicks));
     }
 
     @Override
@@ -52,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void btnOnClick(View view) {
-        Button btn = (Button) view;
-        btn.setText("I've been clicked!");
-        TextView tv = (TextView) findViewById(R.id.textView);
-        tv.setText("You clicked the button");
+    public void addOneToClickCount(View v) {
+        this.iBtnClicks++;
+        this.tvOutput.setText(String.format("%d", this.iBtnClicks));
+    }
+
+    public void removeOneFromClickCount(View v) {
+        this.iBtnClicks--;
+        this.tvOutput.setText(String.format("%d", this.iBtnClicks));
     }
 }
